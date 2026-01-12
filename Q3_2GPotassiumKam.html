@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<title>Club Application Form</title>
+
+<style>
+    body {
+        background-color: rgb(253, 255, 227);
+    }
+    input:focus, select:focus, textarea:focus {
+        background-color: rgb(255, 205, 251);
+    }
+    .invalid {
+        border: 10px solid red;
+    }
+</style>
+
+<script>
+    function confirmSubmit() {
+        return confirm("Submit this application form?");
+    }
+
+    function confirmReset() {
+        return confirm("Reset this application form?");
+    }
+
+    function checkEmpty() {
+        if (x.value === " ") 
+            x.classList.add ("invalid");
+        else
+            x.classList.remove("invalid");
+    }
+</script>
+<body>
+    <form method="post" action="submit" onsubmit="return confirmSubmit()" onreset="confirmReset()">
+    <fieldset>
+        <label>Student ID
+            <input type="number" required>
+        </label>
+
+        <label>something
+            <input type="text/date/number/email" required>
+        </label>
+
+        <label>something
+            <input type="number" required onblur="checkEmpty(this)">
+        </label>
+
+        <label>something
+            <input type="number" required>
+        </label>
+ 
+    </fieldset>
+    <fieldset>
+        <label>Grade Level
+            <select required>
+                <option value="G7">Grade 7</option>
+                <option value="G8">Grade 8</option>
+                <option value="G9">Grade 9</option>
+                <option value="G10">Grade 10</option>
+                <option value="G11">Grade 11</option>
+                <option value="G12">Grade 12</option>
+            </select>
+        </label>
+        <label>Intern/Extern
+            <input type="radio" name="type" value="intern" required> Intern
+            <input type="radio" name="type" value="extern" required> Extern
+        </label>
+        <label>Preferred Club
+            <select required>
+                <option value="Math">Math Club</option>
+                <option value="Math">Math Club</option>
+                <option value="Math">Math Club</option>
+                <option value="Math">Math Club</option>
+                <option value="Math">Math Club</option>
+            </select>
+        </label>
+        <label>Why do you want to join?
+            <textarea required onblur="checkEmpty(this)"></textarea>
+        </label>
+    </fieldset>
+
+    <br>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+
+</form>
+</body>
+</html>
