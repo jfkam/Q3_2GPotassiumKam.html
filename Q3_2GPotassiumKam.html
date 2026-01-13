@@ -3,10 +3,10 @@
 
 <style>
     body {
-        background-color: rgb(253, 255, 227);
+        background-color: rgb(254, 228, 255);
     }
     input:focus, select:focus, textarea:focus {
-        background-color: rgb(255, 205, 251);
+        background-color: rgb(255, 255, 226);
     }
     .invalid {
         border: 10px solid red;
@@ -36,16 +36,16 @@
             <input type="number" required>
         </label>
 
-        <label>something
-            <input type="text/date/number/email" required>
+        <label>Full Name
+            <input type="text" required>
         </label>
 
-        <label>something
-            <input type="number" required onblur="checkEmpty(this)">
+        <label>Birthday
+            <input type="date" required onblur="checkEmpty(this)">
         </label>
 
-        <label>something
-            <input type="number" required>
+        <label>Email address
+            <input type="email" required>
         </label>
  
     </fieldset>
@@ -67,10 +67,10 @@
         <label>Preferred Club
             <select required>
                 <option value="Math">Math Club</option>
-                <option value="Math">Math Club</option>
-                <option value="Math">Math Club</option>
-                <option value="Math">Math Club</option>
-                <option value="Math">Math Club</option>
+                <option value="Math">Art Club</option>
+                <option value="Math">Bake Club</option>
+                <option value="Math">Health Club</option>
+                <option value="Math">Reading Club</option>
             </select>
         </label>
         <label>Why do you want to join?
