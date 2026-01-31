@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>View Club Signups</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background-color: pink;
+        padding: 20px;
+    }
+    .container {
+        width: 95%;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        border: 1px solid gray;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #d9d9d9;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Club Sign-Up Records</h2>
+
+Filter by Club:
+<select id="clubFilter" onchange="filterClub()">
+    <option value="ALL">All Clubs</option>
+    <option value="Math">Math Club</option>
+    <option value="Art">Art Club</option>
+    <option value="Bake">Bake Club</option>
+    <option value="Health">Health Club</option>
+    <option value="Reading">Reading Club</option>
+</select>
+
+<div id="output"></div>
+
+<br>
+<a href="index.html">⬅ Back to Sign-Up Page</a>
+
+</div>
+
+<script>
+let allSignups = [];
+
+function loadData() {
+    let data = localStorage.getItem("clubSignups");
+
+    if (!data) {
+        document.getElementById("output").innerHTML = "<p>No signups saved yet.</p>";
+        return;
+    }
+
+    allSignups = JSON.parse(data);
+    showTable(allSignups);
+}
+
+function showTable(list) {
+    if (list.length === 0) {
+        document.getElementById("output").innerHTML = "<p>No signups for this club.</p>";
+        return;
+    }
+
+    let table = "<table><tr>" +
+        "<th>Club</th>" +
+        "<th>ID</th>" +
+        "<th>Full Name</th>" +
+        "<th>Grade</th>" +
+        "<th>Email</th>" +
+        "<th>Mobile</th>" +
+        "<th>Type</th>" +
+        "</tr>";
+
+    for (let i = 0; i < list.length; i++) {
+        table += "<tr>" +
+            "<td>" + list[i].club + "</td>" +
+            "<td>" + list[i].id + "</td>" +
+            "<td>" + list[i].name + "</td>" +
+            "<td>" + list[i].grade + "</td>" +
+            "<td>" + list[i].email + "</td>" +
+            "<td>" + (list[i].mobile || "-") + "</td>" +
+            "<td>" + list[i].type + "</td>" +
+            "</tr>";
+    }
+
+    table += "</table>";
+    table += "<p><b>Total Signups: " + list.length + "</b></p>";
+
+    document.getElementById("output").innerHTML = table;
+}
+
+function filterClub() {
+    let club = document.getElementById("clubFilter").value;
+
+    if (club === "ALL") {
+        showTable(allSignups);
+    } else {
+        let filtered = [];
+
+        for (let i = 0; i < allSignups.length; i++) {
+            if (allSignups[i].club === club) {
+                filtered.push(allSignups[i]);
+            }
+        }
+
+        showTable(filtered);
+    }
+}
+
+window.onload = loadData;
+</script>
+
+</body>
+</html>
